@@ -1,5 +1,5 @@
-import type { Manifest } from "webextension-polyfill";
-import pkg from "../package.json";
+import type { Manifest } from 'webextension-polyfill';
+import pkg from '../package.json';
 
 const manifest: Manifest.WebExtensionManifest = {
     manifest_version: 3,
@@ -7,43 +7,48 @@ const manifest: Manifest.WebExtensionManifest = {
     version: pkg.version,
     description: pkg.description,
     options_ui: {
-        page: "src/pages/options/index.html",
+        page: 'src/pages/options/index.html',
     },
     background: {
-        service_worker: "src/pages/background/index.js",
+        service_worker: 'src/pages/background/index.js',
         // type: "module",
     },
     action: {
-        default_popup: "src/pages/popup/index.html",
-        default_icon: "icon-34.png",
+        default_popup: 'src/pages/popup/index.html',
+        default_icon: 'icon-34.png',
     },
     // rewrite newtab content to custom page
     // chrome_url_overrides: {
     //   newtab: 'src/pages/newtab/index.html',
     // },
-    devtools_page: "src/pages/devtools/index.html",
+    devtools_page: 'src/pages/devtools/index.html',
     // @ts-ignore
     side_panel: {
-        default_path: "src/pages/panel/index.html",
+        default_path: 'src/pages/panel/index.html',
     },
     icons: {
-        "128": "icon-128.png",
+        '128': 'icon-128.png',
     },
-    permissions: ["activeTab", "sidePanel", "webRequest"],
+    permissions: ['activeTab', 'sidePanel', 'webRequest'],
     content_scripts: [
         {
-            matches: ["http://*/*", "https://*/*", "<all_urls>"],
-            js: ["src/pages/content/index.js"],
-            css: ["contentStyle.css"],
+            matches: ['http://*/*', 'https://*/*', '<all_urls>'],
+            js: ['src/pages/content/index.js'],
+            css: ['contentStyle.css'],
         },
     ],
     web_accessible_resources: [
         {
-            resources: ["contentStyle.css", "icon-128.png", "icon-34.png"],
-            matches: [],
+            resources: [
+                'contentStyle.css',
+                'icon-128.png',
+                'icon-34.png',
+                'injected.js',
+            ],
+            matches: ['<all_urls>'],
         },
     ],
-    host_permissions: ["<all_urls>"],
+    host_permissions: ['<all_urls>'],
 };
 
 export default manifest;
