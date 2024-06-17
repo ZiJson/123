@@ -29,7 +29,7 @@ const manifest: Manifest.WebExtensionManifest = {
     icons: {
         '128': 'icon-128.png',
     },
-    permissions: ['activeTab', 'sidePanel', 'webRequest'],
+    permissions: ['activeTab', 'sidePanel', 'webRequest', 'storage'],
     content_scripts: [
         {
             matches: ['http://*/*', 'https://*/*', '<all_urls>'],
